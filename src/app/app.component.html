@@ -3,18 +3,108 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+  <button pButton label="Open dialog" (click)="openDialog()"></button>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+
+<p-dialog #attachmentDialog header="Title go here" [(visible)]="visible" [modal]="true" [draggable]="false" [resizable]="false"
+          [style]="{'max-width':'80vw;', 'max-height': '50vh'}" [blockScroll]="true">
+
+  <div class="main-content" >
+
+    <div class="drag-and-drop-container">
+      <span class="drag-text">Drag files here or</span>
+      <button id="upload-button" pButton type="button" [label]="'Browse'" style="margin-right: 0; font-size: 1.3em; vertical-align: middle;"></button>
+      <input #hiddenFileInput type="file" multiple />
+
+    </div>
+
+    <div style="width: 80vw;">
+      <p-table #filesTable [value]="attachedFiles" dataKey="id" [rowHover]="false"  [scrollable]="true" scrollHeight="calc(50vh - 250px)">
+
+        <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col>
+            <col style="width: 86px;">
+            <col style="width: 150px;">
+          </colgroup>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+
+          <!-- HEADER (Column names) -->
+          <tr class="table-header">
+
+            <!-- Column Name -->
+            <th >
+              Name
+            </th>
+
+            <!-- Column Size -->
+            <th>
+              Size
+            </th>
+
+            <!-- Column Buttons -->
+            <th>
+            </th>
+
+          </tr>
+
+        </ng-template>
+
+        <!-- BODY -->
+        <ng-template pTemplate="body" let-file let-rowIndex="rowIndex" let-expanded="expanded">
+
+          <tr>
+
+            <!-- Column Name -->
+            <td class="cell-break-word">{{file.name}}</td>
+
+            <!-- Column Size -->
+            <td style="text-align: right">
+              {{file.sizeHumanReadable}}
+            </td>
+
+            <!-- Column Buttons -->
+            <td style="text-align: center;">
+
+              <button id="download-file-button-{{rowIndex+1}}" type="button" pButton icon="fa fa-download"
+                      style="margin-right: 3px;"></button>
+
+              <button id="delete-file-button-{{rowIndex+1}}" type="button" pButton icon="fa fa-trash"
+                      ></button>
+
+            </td>
+
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="3" style="padding: 10px; text-align: center">
+              Empty!
+            </td>
+          </tr>
+        </ng-template>
+
+
+      </p-table>
+    </div>
+
+
+    <div class="footer">
+      <div class="download-all-button">
+        <button pButton type="button" id="download-all-button" icon="fas fa-file-archive" label="Dowload All" ></button>
+      </div>
+
+      <div class="close-button">
+        <button pButton type="button" id="close-button" icon="fas fa-times"   label="Close"></button>
+      </div>
+
+    </div>
+  </div>
+
+</p-dialog>
 
