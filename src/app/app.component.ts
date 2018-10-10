@@ -34,6 +34,6 @@ export class AppComponent implements OnInit {
   }
 
   public onBlur(): void {
-    console.debug(`Blur!!`);
+    console.log(`Blur!!`);
   }
 }
