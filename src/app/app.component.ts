@@ -32,4 +32,8 @@ export class AppComponent implements OnInit {
     this.attachedFiles.push( { downloadUri: '', sizeHumanReadable: '7MB', name: 'file 5.jpg', mimeType: '', size: 111 } );
     this.attachedFiles.push( { downloadUri: '', sizeHumanReadable: '7MB', name: 'file 6.jpg', mimeType: '', size: 111 } );
   }
+
+  public onBlur(): void {
+    console.debug(`Blur!!`);
+  }
 }

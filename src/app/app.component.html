@@ -60,7 +60,19 @@
           <tr>
 
             <!-- Column Name -->
-            <td class="cell-break-word">{{file.name}}</td>
+            <td pEditableColumn class="cell-break-word">
+              <p-cellEditor>
+
+                <ng-template pTemplate="input">
+                  <input (blur)="onBlur()" type="text" [(ngModel)]="file.name">
+                </ng-template>
+
+                <ng-template pTemplate="output">
+                  {{file.name}}
+                </ng-template>
+
+              </p-cellEditor>
+            </td>
 
             <!-- Column Size -->
             <td style="text-align: right">
