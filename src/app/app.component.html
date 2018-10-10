@@ -21,7 +21,8 @@
     </div>
 
     <div style="width: 80vw;">
-      <p-table #filesTable [value]="attachedFiles" dataKey="id" [rowHover]="false"  [scrollable]="true" scrollHeight="calc(50vh - 250px)">
+      <p-table #filesTable [value]="attachedFiles" dataKey="id" [rowHover]="false"  [scrollable]="true" scrollHeight="calc(50vh - 250px)"
+      (onEditComplete)="editComplete($event)">
 
         <ng-template pTemplate="colgroup" let-columns>
           <colgroup>

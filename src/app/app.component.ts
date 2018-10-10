@@ -36,4 +36,8 @@ export class AppComponent implements OnInit {
   public onBlur(): void {
     console.log(`Blur!!`);
   }
+
+  editComplete(event: any) {
+    console.log(event);
+  }
 }
