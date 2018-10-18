@@ -68,8 +68,8 @@
                   <input (blur)="onBlur()" type="text" [(ngModel)]="file.name">
                 </ng-template>
 
-                <ng-template pTemplate="output">
-                  {{file.name}}
+                <ng-template pTemplate="output" >
+                  <span style="color: coral">{{file.name}}</span>
                 </ng-template>
 
               </p-cellEditor>
